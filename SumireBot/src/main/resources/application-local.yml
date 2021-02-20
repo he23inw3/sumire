@@ -1,0 +1,17 @@
+line:
+  bot:
+    startTime: "07:00:00"
+    endTime: "23:59:59"
+    channelSecret: ${LINE_CHANNEL_SECRET}
+    channelToken: ${LINE_CHANNEL_TOKEN}
+    handler:
+      path: /callback
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sumire
+    username: root
+    password: Passw0rd
+av:
+  quiz:
+    cron: 0 0 * * * *

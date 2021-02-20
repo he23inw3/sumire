@@ -1,0 +1,17 @@
+line:
+  bot:
+    startTime: "07:00:00"
+    endTime: "23:59:59"
+    channelSecret: ${LINE_CHANNEL_SECRET}
+    channelToken: ${LINE_CHANNEL_TOKEN}
+    handler:
+      path: /callback
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+av:
+  quiz:
+    cron: 0 0 7 * * *
