@@ -5,7 +5,6 @@
 *.ear
 
 # Eclipse
-.project
 .metadata
 
 # OS
