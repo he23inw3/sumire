@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tokyo.sumire.repository.VersionRepository">
+	<resultMap type="tokyo.sumire.domain.Version" id="versionInfo">
+		<result column="VERSION" property="version" />
+	</resultMap>
+
+	<select id="getLatestVersion" resultMap="versionInfo">
+		SELECT
+			VERSION
+		FROM
+			TBL_VERSION
+		ORDER BY VERSION DESC
+		LIMIT 1;
+	</select>
+
+</mapper>
