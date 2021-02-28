@@ -8,3 +8,6 @@ server:
   port: ${PORT:5001}
 logging:
   file: /var/log/sumire/sumire.bot.log
+  charset:
+    file: UTF-8
+    console: UTF-8
