@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tokyo.sumire.repository.UserRepository">
+	<resultMap type="tokyo.sumire.domain.User" id="userInfo">
+		<result column="USER_ID" property="userId" />
+		<result column="DELETE_FLG" property="deleteFlg" />
+	</resultMap>
+
+	<insert id="registUser" parameterType="tokyo.sumire.domain.User">
+		INSERT INTO TBL_USER (
+			USER_ID
+		) VALUES (
+			#{userId}
+		) ON DUPLICATE KEY UPDATE
+			DELETE_FLG  = '0',
+			UPDATE_DATETIME = CURRENT_TIMESTAMP;
+	</insert>
+
+	<update id="unregistUser" parameterType="tokyo.sumire.domain.User">
+		UPDATE
+			TBL_USER
+		SET
+			DELETE_FLG = '1' AND
+			UPDATE_DATETIME = CURRENT_TIMESTAMP
+		WHERE
+			USER_ID = #{userId};
+	</update>
+</mapper>
