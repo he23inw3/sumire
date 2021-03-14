@@ -1,6 +1,10 @@
 package tokyo.sumire.aop;
 
+import javax.validation.ConstraintViolationException;
+
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -13,6 +17,18 @@ import tokyo.sumire.controller.response.ErrorResponse;
 @Slf4j
 @RestControllerAdvice
 public class ExceptionAdvice {
+
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler({
+			MissingServletRequestParameterException.class,
+			ConstraintViolationException.class,
+			BindException.class
+	})
+	@ResponseBody
+	public ErrorResponse handleRequestError(Throwable th) {
+		log.error("リクエストエラー発生");
+		return new ErrorResponse(MsgConstant.REQUEST_ERROR_MSG);
+	}
 
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	@ExceptionHandler(Throwable.class)
