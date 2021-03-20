@@ -7,4 +7,5 @@ mybatis:
 server:
   port: ${PORT:5003}
 logging:
-  file: /var/log/sumire/sumire.api.log
+  file:
+    name: /var/log/sumire/sumire.api.log
