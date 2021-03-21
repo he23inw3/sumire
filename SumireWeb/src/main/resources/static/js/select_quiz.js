@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	$("#myTable").DataTable({
 		padding: true,
-		pageLength: 2,
+		pageLength: 5,
 		lengthChange: true,
 		searching: true,
 		autoWidth: false,
