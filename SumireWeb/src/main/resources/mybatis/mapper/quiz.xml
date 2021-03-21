@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tokyo.sumire.repository.QuizRepository">
+	<resultMap type="tokyo.sumire.domain.Quiz" id="QuizInfo">
+		<id column="QUIZ_ID" property="quizId" />
+		<result column="PLAN_DAY" property="planDay" />
+		<result column="QUESTION" property="question" />
+		<collection property="choices" ofType="tokyo.sumire.domain.Choice">
+			<result column="NAME" property="name" />
+			<result column="CHOICE_ID" property="choiceId" />
+			<result column="IMAGE_URI" property="imageUri" />
+			<result column="BUST" property="bust" />
+			<result column="WEST" property="west" />
+			<result column="HIP" property="hip" />
+			<result column="CORRECT_FLG" property="correctFlg" />
+		</collection>
+	</resultMap>
+
+	<select id="getQuizList" resultMap="QuizInfo">
+		SELECT
+			QUIZ_ID,
+			PLAN_DAY
+		FROM
+			TBL_QUIZ
+		WHERE
+			DELIVERIED_FLG = '1';
+	</select>
+
+	<select id="getQuizDetail" resultMap="QuizInfo" parameterType="string">
+		SELECT
+			Q.QUIZ_ID AS QUIZ_ID,
+			Q.PLAN_DAY AS PLAN_DAY,
+			Q.QUESTION AS QUESTION,
+			A.NAME AS NAME,
+			C.CHOICE_ID AS CHOICE_ID,
+			A.IMAGE_URI AS IMAGE_URI,
+			A.BUST AS BUST,
+			A.WEST AS WEST,
+			A.HIP AS HIP,
+			C.CORRECT_FLG AS CORRECT_FLG
+		FROM
+			TBL_QUIZ AS Q
+		INNER JOIN TBL_CHOICE AS C
+			ON Q.QUIZ_ID = C.QUIZ_ID
+		INNER JOIN TBL_ACTRESS AS A
+			ON C.ACTRESS_ID = A.ACTRESS_ID
+		WHERE
+			Q.QUIZ_ID = #{quizId}
+	</select>
+
+</mapper>

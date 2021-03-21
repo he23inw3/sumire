@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head th:replace="commons/header :: common_head(~{::title}, ~{::link}, ~{::script})">
+	<title>クイズ画面</title>
+	<link th:href="@{/css/select_quiz.css}" rel="stylesheet" type="text/css">
+	<script th:src="@{/js/select_quiz.js}" type="text/javascript"></script>
+</head>
+<body>
+	<header th:replace="commons/header :: common_header()"></header>
+	<div class="container container-fluid">
+		<table id="myTable" class="table table-striped tagle-bordered">
+			<thead>
+				<tr>
+					<th>No</th>
+					<th>配信日</th>
+					<th>開始</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="quiz : ${quizList}">
+					<td><p th:text="${quiz.quizId}"></p></td>
+					<td><p th:text="${#dates.format(quiz.planDay, 'yyyy年MM月dd日')}"></p></td>
+					<td>
+						<a class="btn btn-success" th:href="@{/quiz(quizId=${quiz.quizId})}">開始</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<footer th:replace="commons/footer :: common_footer()"></footer>
+</body>
+</html>

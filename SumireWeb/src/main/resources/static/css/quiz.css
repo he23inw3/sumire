@@ -1,0 +1,9 @@
+.frame {
+	padding: 1em;
+	margin: 2em auto;
+	color: #696969;
+	width:100%;
+	background: #fffafa;
+	border-left: double 8px #20b2aa;
+	border-right: double 8px #20b2aa;
+}
