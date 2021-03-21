@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import lombok.extern.slf4j.Slf4j;
+import tokyo.sumire.constant.LogConstant;
 import tokyo.sumire.constant.MsgConstant;
 import tokyo.sumire.controller.response.ErrorResponse;
 import tokyo.sumire.exception.NotFoundResourceException;
@@ -27,7 +28,7 @@ public class ExceptionAdvice {
 	})
 	@ResponseBody
 	public ErrorResponse handleRequestError(Throwable th) {
-		log.error("リクエストエラー発生");
+		log.error(LogConstant.E_LOG001);
 		return new ErrorResponse(MsgConstant.REQUEST_ERROR_MSG);
 	}
 
@@ -37,7 +38,7 @@ public class ExceptionAdvice {
 	})
 	@ResponseBody
 	public ErrorResponse handleNotFoundError(Throwable th) {
-		log.error("検索エラー発生");
+		log.error(LogConstant.E_LOG002);
 		return new ErrorResponse(MsgConstant.NOT_FOUND_ERROR_MSG);
 	}
 
@@ -45,7 +46,7 @@ public class ExceptionAdvice {
 	@ExceptionHandler(Throwable.class)
 	@ResponseBody
 	public ErrorResponse handleUnExpectedError(Throwable th) {
-		log.error("想定外エラー発生", th);
+		log.error(LogConstant.E_LOG003, th);
 		return new ErrorResponse(MsgConstant.UN_EXPECTED_ERROR_MSG);
 	}
 }
