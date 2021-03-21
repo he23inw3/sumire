@@ -1,7 +1,5 @@
 package tokyo.sumire.repository;
 
-import java.util.Map;
-
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,10 +28,10 @@ public interface QuizRepository {
 	 * <dd>選択肢からおすすめビデオを算出</dd>
 	 * </dl>
 	 *
-	 * @param paramMap パラメーターマップ
+	 * @param answer 答え
 	 * @return 女優ID
 	 */
-	String getResourceUri(Map<String, String> paramMap);
+	String getResourceUri(Answer anwer);
 
 	/**
 	 * <dl>

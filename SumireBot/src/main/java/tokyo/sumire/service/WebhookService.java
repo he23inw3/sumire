@@ -2,8 +2,6 @@ package tokyo.sumire.service;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -83,10 +81,7 @@ public class WebhookService {
 		// 応答
 		String message = MsgConstant.MSG005;
 		if (correctFlg) {
-			Map<String, String> paramMap = new HashMap<>();
-			paramMap.put("quizId", quizId);
-			paramMap.put("choiceId", choiceId);
-			String resourceUri = this.quizRepository.getResourceUri(paramMap);
+			String resourceUri = this.quizRepository.getResourceUri(answer);
 			message = String.format(MsgConstant.MSG004, resourceUri);
 		}
 
